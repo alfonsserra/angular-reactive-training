@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
+import { ApiService } from '../../common/api/api.service';
+import { Terminal } from '../../common/terminal';
 
 @Component({
   selector:    'app-lesson2',
@@ -11,40 +12,22 @@ export class Lesson2Component implements OnInit {
   public calculatedValue: number;
   public errorMessage = '';
 
-  constructor() {
+  public terminal = new Terminal();
+
+  constructor(protected apiService: ApiService) {
   }
 
-  ngOnInit() {
-    forkJoin(this.firstObservable(),
-      this.secondObservable(10),
-      this.thirdObservable(1),
-      this.fourthObservable(6),
-      this.fifthObservable(9))
+  public ngOnInit() {
+    this.run();
+  }
+
+  public run() {
+    forkJoin(this.apiService.firstObservable(this.terminal),
+      this.apiService.secondObservable(10, this.terminal),
+      this.apiService.thirdObservable(1, this.terminal),
+      this.apiService.fourthObservable(6, this.terminal),
+      this.apiService.fifthObservable(9, this.terminal))
       .subscribe(values => this.errorMessage = values.join(', '), e => this.errorMessage = e.message);
-  }
-
-  public firstObservable(): Observable<number> {
-    return of(4);
-  }
-
-  public secondObservable(n: number): Observable<number> {
-    return of(n * 2)
-      .pipe(delay(2000));
-  }
-
-  public thirdObservable(n: number): Observable<number> {
-    return of(n * 3)
-      .pipe(delay(5000));
-  }
-
-  public fourthObservable(n: number): Observable<number> {
-    return of(n * 4)
-      .pipe(delay(1000));
-  }
-
-  public fifthObservable(n: number): Observable<number> {
-    return of(n * 5)
-      .pipe(delay(1000));
   }
 
 }
