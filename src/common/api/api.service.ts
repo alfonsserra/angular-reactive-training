@@ -11,29 +11,30 @@ export class ApiService {
 
   public firstObservable(terminal: Terminal): Observable<number> {
     terminal.log('firstObservable();');
-    return of(4).pipe(delay(2000));
+    return of(4)
+      .pipe(delay(2000));
   }
 
   public secondObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('secondObservable();');
+    terminal.log('secondObservable(' + n + ');');
     return of(n * 2)
       .pipe(delay(4000));
   }
 
   public thirdObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('thirdObservable();');
+    terminal.log('thirdObservable(' + n + ');');
     return of(n * 3)
       .pipe(delay(1000));
   }
 
   public fourthObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('fourthObservable();');
+    terminal.log('fourthObservable(' + n + ');');
     return of(n * 4)
       .pipe(delay(5000));
   }
 
   public fifthObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('fifthObservable();');
+    terminal.log('fifthObservable(' + n + ');');
     return of(n * 5)
       .pipe(delay(1000));
   }

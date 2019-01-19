@@ -22,6 +22,9 @@ export class Lesson3Component implements OnInit {
   }
 
   public run() {
+    this.calculatedValue = undefined;
+    this.errorMessage = '';
+    this.terminal.reset();
     this.apiService.firstObservable(this.terminal)
       .pipe(
         concatMap(n => this.apiService.secondObservable(n, this.terminal)),

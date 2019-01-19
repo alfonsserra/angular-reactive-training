@@ -22,6 +22,9 @@ export class Lesson2Component implements OnInit {
   }
 
   public run() {
+    this.calculatedValue = undefined;
+    this.errorMessage = '';
+    this.terminal.reset();
     forkJoin(this.apiService.firstObservable(this.terminal),
       this.apiService.secondObservable(10, this.terminal),
       this.apiService.thirdObservable(1, this.terminal),
