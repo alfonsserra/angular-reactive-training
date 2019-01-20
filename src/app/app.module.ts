@@ -9,6 +9,7 @@ import { Lesson4Component } from './lesson4/lesson4.component';
 import { ComponentsModule } from '../common/components/components.module';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Lesson5Component } from './lesson5/lesson5.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     Lesson1Component,
     Lesson2Component,
     Lesson3Component,
-    Lesson4Component
+    Lesson4Component,
+    Lesson5Component
   ],
   providers: [],
   bootstrap: [AppComponent]
