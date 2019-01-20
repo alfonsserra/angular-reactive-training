@@ -1,27 +1,40 @@
-# AngularReactiveTraining
+# Angular Reactive Training
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
 
-## Development server
+## Working with the repo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+In order to clone the repository and run the lessons use the following commands:
 
-## Code scaffolding
+```bash
+git clone https://github.com/systelab/angular-reactive-training.git
+cd angular-reactive-training
+npm install
+ng serve
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This will bootstrap the application. Please head to htp://localhost:4200
 
-## Build
+## Wiremock
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+We will use WireMock server to mock a server.
 
-## Running unit tests
+Once you have [downloaded the standalone JAR](http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-standalone/2.20.0/wiremock-standalone-2.20.0.jar), run it by simply typing the command:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+java -jar wiremock-standalone-2.20.0.jar --global-response-templating
+```
 
-## Running end-to-end tests
+Once started run the following commands to create some endpoint that we are going to need:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+curl -X POST \
+--data '{ "request": { "urlPattern": "/first\\?n=([0-9]*)", "method": "GET" }, "response": { "status": 200, "headers": { "Content-Type" : "application/json", "Access-Control-Allow-Origin" : "*", "Access-Control-Allow-Methods" : "*", "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding", "X-Content-Type-Options" : "nosniff", "x-frame-options" : "DENY", "x-xss-protection" : "1; mode=block" }, "body": "{{request.requestLine.query.n}}", "fixedDelayMilliseconds": 2000, "transformers": ["response-template"] }}' \
+http://localhost:8080/__admin/mappings/new
+```
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Check that everything is fine by typing:
+
+```bash
+curl http://localhost:8080/first?n=34
+````
