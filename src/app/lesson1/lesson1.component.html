@@ -4,9 +4,10 @@
   <button type="button" class="btn btn-primary mb-1 ml-auto" (click)="run()">Reset</button>
 </div>
 <log-display [terminal]="terminal"></log-display>
-<p>
-  The calculated value is: {{calculatedValue}}
+<p *ngIf="calculatedValue">
+  The calculated value is: {{calculatedValue}}. The error message is: '{{errorMessage}}'
 </p>
-<p>
-  The error message is: {{errorMessage}}
+<p *ngIf="!calculatedValue">
+  The calculated value is: ?. The error message is: '{{errorMessage}}'
 </p>
+

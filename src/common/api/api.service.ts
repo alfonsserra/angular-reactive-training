@@ -11,32 +11,32 @@ export class ApiService {
   }
 
   public firstObservable(terminal: Terminal): Observable<number> {
-    terminal.log('firstObservable();');
+    terminal.log('firstObservable();', 'Adds a delay of 2 seconds');
     return of(4)
       .pipe(delay(2000));
   }
 
   public secondObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('secondObservable(' + n + ');');
+    terminal.log('secondObservable(' + n + ');', 'Adds a delay of 4 seconds');
 
     return of(n * 2)
       .pipe(delay(4000));
   }
 
   public thirdObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('thirdObservable(' + n + ');');
+    terminal.log('thirdObservable(' + n + ');', 'Adds a delay of 1 seconds');
     return of(n * 3)
       .pipe(delay(1000));
   }
 
   public fourthObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('fourthObservable(' + n + ');');
+    terminal.log('fourthObservable(' + n + ');', 'Adds a delay of 5 seconds');
     return of(n * 4)
       .pipe(delay(5000));
   }
 
   public fifthObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('fifthObservable(' + n + ');');
+    terminal.log('fifthObservable(' + n + ');', 'Adds a delay of 1 seconds');
     return of(n * 5)
       .pipe(delay(1000));
   }
@@ -47,7 +47,7 @@ export class ApiService {
     if (n !== null) {
       queryParameters = queryParameters.set('n', <any>n);
     }
-    terminal.log('getRestObservable(' + n + ');');
+    terminal.log('getRestObservable(' + n + ');', 'Adds a delay of 2 seconds');
 
     return this.httpClient.get<any>(`http://localhost:8080/first`, {
       params: queryParameters
