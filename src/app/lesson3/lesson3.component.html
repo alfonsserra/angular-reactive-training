@@ -1,5 +1,5 @@
 <div class="display-4 mt-4">Concat Map</div>
-<div>Map to observable, emit values.</div>
+<div>Map values to inner observable, subscribe and emit in order. concatMap does not subscribe to the next observable until the previous completes. In contrast, mergeMap subscribes immediately to inner observables.</div>
 <div class="d-flex">
   <button type="button" class="btn btn-primary mb-1 ml-auto" (click)="run()">Reset</button>
 </div>

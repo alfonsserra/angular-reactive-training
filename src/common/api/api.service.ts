@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { Terminal } from '../terminal';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -47,10 +47,14 @@ export class ApiService {
     if (n !== null) {
       queryParameters = queryParameters.set('n', <any>n);
     }
-    terminal.log('getRestObservable(' + n + ');', 'Adds a delay of 2 seconds');
+    const entry = terminal.log('getRestObservable(' + n + ');', 'Adds a delay of 2 seconds');
 
     return this.httpClient.get<any>(`http://localhost:8080/first`, {
       params: queryParameters
-    });
+    })
+      .pipe(map((value) => {
+        entry.comments += '. Returns ' + n + '.';
+        return value;
+      }));
   }
 }

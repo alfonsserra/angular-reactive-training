@@ -1,6 +1,6 @@
 export class LogEntry {
 
-  constructor(public date: Date, public text: string, public comments: string) {
+  constructor(public date: Date, public text: string, public comments: string, public error?: string) {
   }
 
   public getDate() {
@@ -30,8 +30,16 @@ export class Terminal {
 
   public logHistory: Array<LogEntry> = [];
 
-  public log(text:string, comments:string) {
-    this.logHistory.push(new LogEntry(new Date(), text, comments));
+  public log(text: string, comments: string): LogEntry {
+    const entry = new LogEntry(new Date(), text, comments);
+    this.logHistory.push(entry);
+    return entry;
+  }
+
+  public error(error: string, comments: string) {
+    const entry = new LogEntry(new Date(), '', comments, error);
+    this.logHistory.push(entry);
+    return entry;
   }
 
   public getLogHistory(): Array<LogEntry> {

@@ -1,3 +1,10 @@
-<pre>
-  <div *ngFor="let logEntry of this.terminal.getLogHistory()"><span class="time">{{logEntry.getDate()}}</span> {{logEntry.text}} <span class="comments">// {{logEntry.comments}}</span> </div>
-</pre>
+<div class="log">
+  <div *ngFor="let logEntry of this.terminal.getLogHistory()">
+    <div *ngIf="!logEntry.error">
+      <span class="time">{{logEntry.getDate()}}</span> {{logEntry.text}} <span class="comments">// {{logEntry.comments}}</span>
+    </div>
+    <div *ngIf="logEntry.error" class="text-danger">
+      <span class="time">{{logEntry.getDate()}}</span> {{logEntry.error}} <span class="comments">// {{logEntry.comments}}</span>
+    </div>
+  </div>
+</div>

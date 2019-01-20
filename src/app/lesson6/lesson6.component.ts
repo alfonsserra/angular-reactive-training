@@ -25,16 +25,16 @@ export class Lesson6Component {
     this.terminal.reset();
     this.apiService.getRestObservable(22, this.terminal)
       .pipe(
-        switchMap(n => this.apiService.getRestObservable(n, this.terminal)),
-        switchMap(n => this.apiService.getRestObservable(n, this.terminal)),
-        switchMap(n => this.showMessage('Title', n)),
-        switchMap(n => this.apiService.getRestObservable(n, this.terminal)),
-        switchMap(n => this.apiService.getRestObservable(n, this.terminal)))
+        switchMap(n => this.apiService.getRestObservable(n * 2, this.terminal)),
+        switchMap(n => this.apiService.getRestObservable(n * 4, this.terminal)),
+        switchMap(n => this.confirmToGoAhead('Title', n)),
+        switchMap(n => this.apiService.getRestObservable(n / 2, this.terminal)),
+        switchMap(n => this.apiService.getRestObservable(n * 5, this.terminal)))
       .subscribe(n => this.calculatedValue = n, e => this.errorMessage = e.message);
   }
 
-  public showMessage(title: string, n: number): Observable<number> {
-    this.terminal.log('showMessageChain()', 'Shows a user modal');
+  public confirmToGoAhead(title: string, n: number): Observable<number> {
+    const entry = this.terminal.log('showMessageChain(' + n + ')', 'Shows a user modal');
     return this.messagePopupService.showYesNoQuestionPopup(title, 'For the moment I receive a ' + n)
       .pipe(map(
         (value) => {
@@ -42,8 +42,10 @@ export class Lesson6Component {
             document.body.classList.remove('modal-open');
           }
           if (value) {
+            entry.comments += '. Returns ' + n + '.';
             return n;
           } else {
+            this.terminal.error('Cancelled by the user', 'Throws an error');
             throw new Error('Cancelled by the user');
           }
         }));

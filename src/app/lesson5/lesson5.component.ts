@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../../common/api/api.service';
 import { Terminal } from '../../common/terminal';
-import {  switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector:    'app-lesson5',
   templateUrl: './lesson5.component.html'
 })
-export class Lesson5Component implements OnInit {
+export class Lesson5Component {
 
   public calculatedValue: number;
   public errorMessage = '';
@@ -15,10 +15,6 @@ export class Lesson5Component implements OnInit {
   public terminal = new Terminal();
 
   constructor(protected apiService: ApiService) {
-  }
-
-  public ngOnInit() {
-    this.run();
   }
 
   public run() {

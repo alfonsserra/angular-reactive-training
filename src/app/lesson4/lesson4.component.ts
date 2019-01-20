@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { race } from 'rxjs';
 import { ApiService } from '../../common/api/api.service';
 import { Terminal } from '../../common/terminal';
@@ -7,7 +7,7 @@ import { Terminal } from '../../common/terminal';
   selector:    'app-lesson4',
   templateUrl: './lesson4.component.html'
 })
-export class Lesson4Component implements OnInit {
+export class Lesson4Component {
 
   public calculatedValue: number;
   public errorMessage = '';
@@ -15,10 +15,6 @@ export class Lesson4Component implements OnInit {
   public terminal = new Terminal();
 
   constructor(protected apiService: ApiService) {
-  }
-
-  public ngOnInit() {
-    this.run();
   }
 
   public run() {
