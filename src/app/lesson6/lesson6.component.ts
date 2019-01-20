@@ -35,7 +35,7 @@ export class Lesson6Component {
 
   public confirmToGoAhead(title: string, n: number): Observable<number> {
     const entry = this.terminal.log('showMessageChain(' + n + ')', 'Shows a user modal');
-    return this.messagePopupService.showYesNoQuestionPopup(title, 'For the moment I receive a ' + n)
+    return this.messagePopupService.showYesNoQuestionPopup(title, 'Do you want to proceed with the value ' + n + '?')
       .pipe(map(
         (value) => {
           if (document.body.classList.contains('modal-open')) {

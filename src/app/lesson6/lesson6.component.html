@@ -1,7 +1,7 @@
 <div class="display-4 mt-4">Chain server calls</div>
 <div>Map to observable, emit values. If each Observable emits only one value (tipical server call), then it doesn't matter if you use mergeMap, flatMap, concatMap or switchMap. switchMap is preferred because it protects better against future changes.</div>
 <div class="d-flex">
-  <button type="button" class="btn btn-primary mb-1 ml-auto" (click)="run()">Reset</button>
+  <button type="button" class="btn btn-primary mb-1 ml-auto" (click)="run()">Start</button>
 </div>
 <log-display [terminal]="this.terminal"></log-display>
 <p *ngIf="calculatedValue">
