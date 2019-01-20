@@ -1,0 +1,12 @@
+<div class="display-4 mt-4">Chain server calls</div>
+<div>Map to observable, emit values.</div>
+<div class="d-flex">
+  <button type="button" class="btn btn-primary mb-1 ml-auto" (click)="run()">Reset</button>
+</div>
+<log-display [terminal]="this.terminal"></log-display>
+<p *ngIf="calculatedValue">
+  The calculated value is: {{calculatedValue}}. The error message is: '{{errorMessage}}'
+</p>
+<p *ngIf="!calculatedValue">
+  The calculated value is: ?. The error message is: '{{errorMessage}}'
+</p>

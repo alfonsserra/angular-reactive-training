@@ -27,10 +27,25 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-fresh.css",
+              "node_modules/primeng/resources/themes/omega/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/systelab-components/icons/icomoon.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            },
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/pako/dist/pako.min.js",
+              "node_modules/nanobar/nanobar.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -84,10 +99,25 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-fresh.css",
+              "node_modules/primeng/resources/themes/omega/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/systelab-components/icons/icomoon.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            },
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/pako/dist/pako.min.js",
+              "node_modules/nanobar/nanobar.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
