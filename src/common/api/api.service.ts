@@ -42,9 +42,8 @@ export class ApiService {
   }
 
   public getRestObservable(n: number, terminal: Terminal): Observable<number> {
-
     let queryParameters = new HttpParams();
-    if (n !== null) {
+    if (n) {
       queryParameters = queryParameters.set('n', <any>n);
     }
     const entry = terminal.log('getRestObservable(' + n + ');', 'Adds a delay of 2 seconds');
