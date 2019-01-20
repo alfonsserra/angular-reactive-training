@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Terminal } from '../terminal';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
 
-  constructor() {
+  constructor(protected httpClient: HttpClient) {
   }
 
   public firstObservable(terminal: Terminal): Observable<number> {
@@ -17,6 +18,7 @@ export class ApiService {
 
   public secondObservable(n: number, terminal: Terminal): Observable<number> {
     terminal.log('secondObservable(' + n + ');');
+
     return of(n * 2)
       .pipe(delay(4000));
   }
@@ -37,5 +39,18 @@ export class ApiService {
     terminal.log('fifthObservable(' + n + ');');
     return of(n * 5)
       .pipe(delay(1000));
+  }
+
+  public getRestObservable(n: number, terminal: Terminal): Observable<number> {
+
+    let queryParameters = new HttpParams();
+    if (n !== null) {
+      queryParameters = queryParameters.set('n', <any>n);
+    }
+    terminal.log('getRestObservable(' + n + ');');
+
+    return this.httpClient.get<any>(`http://localhost:8080/first`, {
+      params: queryParameters
+    });
   }
 }

@@ -8,19 +8,21 @@ import { Lesson3Component } from './lesson3/lesson3.component';
 import { Lesson4Component } from './lesson4/lesson4.component';
 import { ComponentsModule } from '../common/components/components.module';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    CommonModule,
+    ComponentsModule
+  ],
   declarations: [
     AppComponent,
     Lesson1Component,
     Lesson2Component,
     Lesson3Component,
     Lesson4Component
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
