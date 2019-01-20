@@ -25,7 +25,7 @@ export class Lesson5Component {
       .pipe(
         switchMap(n => this.apiService.secondObservable(n, this.terminal)),
         switchMap(n => this.apiService.thirdObservable(n, this.terminal)),
-        switchMap(n => this.apiService.getRestObservable(n, this.terminal)),
+        switchMap(n => this.apiService.fourthObservable(n, this.terminal)),
         switchMap(n => this.apiService.fifthObservable(n, this.terminal)))
       .subscribe(n => this.calculatedValue = n, e => this.errorMessage = e.message);
   }

@@ -25,7 +25,7 @@ export class Lesson1Component {
       .pipe(
         flatMap(n => this.apiService.secondObservable(n, this.terminal)),
         flatMap(n => this.apiService.thirdObservable(n, this.terminal)),
-        flatMap(n => this.apiService.getRestObservable(n, this.terminal)),
+        flatMap(n => this.apiService.fourthObservable(n, this.terminal)),
         flatMap(n => this.apiService.fifthObservable(n, this.terminal)))
       .subscribe(n => this.calculatedValue = n, e => this.errorMessage = e.message);
   }

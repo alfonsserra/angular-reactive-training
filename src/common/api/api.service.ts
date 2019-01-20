@@ -11,34 +11,49 @@ export class ApiService {
   }
 
   public firstObservable(terminal: Terminal): Observable<number> {
-    terminal.log('firstObservable();', 'Adds a delay of 2 seconds');
+    const entry = terminal.log('firstObservable();', 'Adds a delay of 2 seconds.');
     return of(4)
-      .pipe(delay(2000));
+      .pipe(delay(2000), map(value => {
+        entry.comments += ' Returns ' + value + '.';
+        return value;
+      }));
   }
 
   public secondObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('secondObservable(' + n + ');', 'Adds a delay of 4 seconds');
+    const entry = terminal.log('secondObservable(' + n + ');', 'Adds a delay of 4 seconds.');
 
-    return of(n * 2)
-      .pipe(delay(4000));
+    return of(n * 2, n * 6)
+      .pipe(delay(4000), map(value => {
+        entry.comments += ' Returns ' + value + '.';
+        return value;
+      }));
   }
 
   public thirdObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('thirdObservable(' + n + ');', 'Adds a delay of 1 seconds');
-    return of(n * 3)
-      .pipe(delay(1000));
+    const entry = terminal.log('thirdObservable(' + n + ');', 'Adds a delay of 1 seconds.');
+    return of(n + 3)
+      .pipe(delay(1000), map(value => {
+        entry.comments += ' Returns ' + value + '.';
+        return value;
+      }));
   }
 
   public fourthObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('fourthObservable(' + n + ');', 'Adds a delay of 5 seconds');
+    const entry = terminal.log('fourthObservable(' + n + ');', 'Adds a delay of 5 seconds.');
     return of(n * 4)
-      .pipe(delay(5000));
+      .pipe(delay(5000), map(value => {
+        entry.comments += ' Returns ' + value + '.';
+        return value;
+      }));
   }
 
   public fifthObservable(n: number, terminal: Terminal): Observable<number> {
-    terminal.log('fifthObservable(' + n + ');', 'Adds a delay of 1 seconds');
-    return of(n * 5)
-      .pipe(delay(1000));
+    const entry = terminal.log('fifthObservable(' + n + ');', 'Adds a delay of 1 seconds.');
+    return of(n + 5)
+      .pipe(delay(1000), map(value => {
+        entry.comments += ' Returns ' + value + '.';
+        return value;
+      }));
   }
 
   public getRestObservable(n: number, terminal: Terminal): Observable<number> {
@@ -46,13 +61,13 @@ export class ApiService {
     if (n) {
       queryParameters = queryParameters.set('n', <any>n);
     }
-    const entry = terminal.log('getRestObservable(' + n + ');', 'Adds a delay of 2 seconds');
+    const entry = terminal.log('getRestObservable(' + n + ');', 'Adds a delay of 2 seconds.');
 
     return this.httpClient.get<any>(`http://localhost:8080/first`, {
       params: queryParameters
     })
-      .pipe(map((value) => {
-        entry.comments += '. Returns ' + n + '.';
+      .pipe(map(value => {
+        entry.comments += ' Returns ' + value + '.';
         return value;
       }));
   }
